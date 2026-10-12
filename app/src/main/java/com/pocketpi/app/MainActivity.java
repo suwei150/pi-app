@@ -12,6 +12,8 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
@@ -69,15 +71,18 @@ public class MainActivity extends Activity {
 
         @JavascriptInterface
         public String sysinfo() {
-            StringBuilder sb = new StringBuilder();
-            sb.append("{\"brand\":\").append(Build.BRAND).append("\"");
-            sb.append(",\"model\":\").append(Build.MODEL).append("\"");
-            sb.append(",\"sdk\":").append(Build.VERSION.SDK_INT);
-            sb.append(",\"release\":\").append(Build.VERSION.RELEASE).append("\"");
-            sb.append(",\"device\":\").append(Build.DEVICE).append("\"");
-            sb.append(",\"manufacturer\":\").append(Build.MANUFACTURER).append("\"");
-            sb.append("}");
-            return sb.toString();
+            try {
+                JSONObject j = new JSONObject();
+                j.put("brand", Build.BRAND);
+                j.put("model", Build.MODEL);
+                j.put("sdk", Build.VERSION.SDK_INT);
+                j.put("release", Build.VERSION.RELEASE);
+                j.put("device", Build.DEVICE);
+                j.put("manufacturer", Build.MANUFACTURER);
+                return j.toString();
+            } catch (Exception e) {
+                return "{}";
+            }
         }
 
         @JavascriptInterface
