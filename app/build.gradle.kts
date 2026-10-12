@@ -19,8 +19,8 @@ android {
         applicationId = "com.pocketpi.app"
         minSdk = 26
         targetSdk = 34
-        versionCode = 3
-        versionName = "0.3.0-m1.6"
+        versionCode = 4
+        versionName = "0.3.0-m2"
     }
 
     buildTypes {
